@@ -1,0 +1,231 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #2563EB;
+  /* Primary Blue */
+  --color-accent: #10B981;
+  /* Accent Green */
+  --color-light: #F9FAFB;
+  /* Light Gray */
+}
+
+/* Base typography tweaks */
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-white text-slate-800 antialiased;
+    background-image: radial-gradient(circle at 1px 1px, rgba(15, 23, 42, 0.02) 1px, transparent 0);
+    background-size: 22px 22px;
+  }
+
+  h1 {
+    @apply text-3xl md:text-5xl font-semibold tracking-tight;
+    background: linear-gradient(90deg, #2563EB, #10B981);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  h2 {
+    @apply text-2xl md:text-4xl font-semibold;
+    background: linear-gradient(90deg, #2563EB, #10B981);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl font-semibold;
+  }
+
+  p {
+    @apply text-slate-600;
+  }
+
+  a {
+    @apply text-[--color-primary];
+  }
+
+  a:hover {
+    filter: brightness(1.1);
+  }
+}
+
+/* Reusable utilities */
+@layer utilities {
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-2xl bg-[--color-primary] text-white px-6 py-3 font-medium shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-transform transition-shadow transition-colors ring-1 ring-blue-500/20 hover:ring-blue-500/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .25);
+  }
+
+  .btn-accent {
+    @apply inline-flex items-center justify-center rounded-2xl bg-[--color-accent] text-white px-6 py-3 font-medium shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-transform transition-shadow transition-colors ring-1 ring-emerald-500/20 hover:ring-emerald-500/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .25);
+  }
+
+  .btn-white {
+    @apply inline-flex items-center justify-center rounded-2xl bg-white text-slate-900 px-6 py-3 font-medium shadow-md ring-1 ring-slate-200 transition-transform transition-shadow transition-colors duration-200 ease-out focus-visible:outline-none;
+  }
+
+  .btn-white:hover {
+    @apply -translate-y-0.5 shadow-lg ring-slate-300 bg-[--color-primary] text-white;
+  }
+
+  .btn-white:focus-visible {
+    @apply ring-2 ring-blue-500/50;
+  }
+
+  /* New: ghost button with gradient hover while keeping text readable */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center rounded-2xl bg-white text-slate-900 px-6 py-3 font-medium shadow-md ring-1 ring-slate-200 transition-transform transition-shadow transition-colors duration-200 ease-out focus-visible:outline-none;
+  }
+
+  .btn-ghost:hover {
+    background-image: linear-gradient(90deg, #2563EB, #10B981);
+    color: #fff;
+    @apply -translate-y-0.5 shadow-lg ring-transparent;
+  }
+
+  .btn-ghost:focus-visible {
+    @apply ring-2 ring-blue-500/50;
+  }
+
+  .section {
+    @apply py-12 md:py-20;
+  }
+
+  .card {
+    @apply rounded-2xl bg-white shadow-sm ring-1 ring-slate-100 transition;
+  }
+
+  .card:hover {
+    box-shadow: 0 10px 25px -10px rgba(37, 99, 235, 0.25);
+  }
+
+  .glass {
+    @apply bg-white/70 backdrop-blur ring-1 ring-white/40 shadow-sm;
+  }
+
+  .gradient-text {
+    background: linear-gradient(90deg, #2563EB, #10B981);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* App background layers */
+  .app-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .bg-blob {
+    position: absolute;
+    width: 60vw;
+    height: 60vw;
+    min-width: 560px;
+    min-height: 560px;
+    border-radius: 9999px;
+    filter: blur(120px);
+    opacity: .45;
+  }
+
+  .blob-blue {
+    background: radial-gradient(ellipse at center, rgba(37, 99, 235, .65), transparent 60%);
+    top: -15%;
+    left: -12%;
+    animation: float1 18s ease-in-out infinite;
+  }
+
+  .blob-emerald {
+    background: radial-gradient(ellipse at center, rgba(16, 185, 129, .6), transparent 60%);
+    bottom: -15%;
+    right: -10%;
+    animation: float2 22s ease-in-out infinite;
+  }
+
+  .blob-purple {
+    background: radial-gradient(ellipse at center, rgba(147, 51, 234, .45), transparent 60%);
+    top: 20%;
+    right: 22%;
+    animation: float3 26s ease-in-out infinite;
+  }
+
+  /* Colorful helpers */
+  .section-primary {
+    background: linear-gradient(180deg, rgba(59, 130, 246, 0.08), rgba(16, 185, 129, 0.06));
+  }
+
+  .section-emerald {
+    background: linear-gradient(180deg, rgba(16, 185, 129, 0.08), rgba(59, 130, 246, 0.06));
+  }
+
+  .section-violet {
+    background: linear-gradient(180deg, rgba(139, 92, 246, 0.08), rgba(16, 185, 129, 0.05));
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium ring-1;
+  }
+
+  .chip-primary {
+    @apply bg-blue-50 text-blue-700 ring-blue-200;
+  }
+
+  .chip-emerald {
+    @apply bg-emerald-50 text-emerald-700 ring-emerald-200;
+  }
+
+  .chip-violet {
+    @apply bg-violet-50 text-violet-700 ring-violet-200;
+  }
+
+  .card-accent {
+    background: linear-gradient(white, white) padding-box,
+      linear-gradient(135deg, rgba(59, 130, 246, .35), rgba(16, 185, 129, .35)) border-box;
+    border: 1px solid transparent;
+    border-radius: 1rem;
+  }
+}
+
+@keyframes float1 {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(4%, 6%) scale(1.05);
+  }
+}
+
+@keyframes float2 {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(-5%, -4%) scale(1.08);
+  }
+}
+
+@keyframes float3 {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(3%, -3%) scale(1.04);
+  }
+}
